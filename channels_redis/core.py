@@ -130,7 +130,7 @@ class RedisChannelLayer(BaseChannelLayer):
         host = self.hosts[index]
 
         if "address" in host:
-            address = host["address"]
+            address = host.pop("address")
             return aioredis.ConnectionPool.from_url(address, **host)
         elif "master_name" in host:
             sentinels = host.pop("sentinels")
